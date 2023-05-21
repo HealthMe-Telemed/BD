@@ -1,3 +1,6 @@
+CREATE DATABASE healthme;
+
+USE healthme;
 
 CREATE TABLE agendamento
 (
@@ -126,13 +129,6 @@ CREATE TABLE tipo_consulta
 (
   id        INT          NOT NULL,
   descricao VARCHAR(255) NOT NULL,
-  PRIMARY KEY (id)
-);
-
-CREATE TABLE tipo_consulta
-(
-  id        INT          NOT NULL,
-  descrição VARCHAR(255) NULL    ,
   PRIMARY KEY (id)
 );
 
