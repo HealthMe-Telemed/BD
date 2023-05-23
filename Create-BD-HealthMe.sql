@@ -41,7 +41,6 @@ CREATE TABLE consulta
   id               INT          NOT NULL,
   agendamento_id   INT          NOT NULL,
   tipo_consulta_id INT          NOT NULL,
-  documento_id     INT          NOT NULL,
   link_consulta    VARCHAR(255) NULL    ,
   PRIMARY KEY (id)
 );
@@ -50,6 +49,7 @@ CREATE TABLE documento
 (
   id                INT          NOT NULL,
   tipo_documento_id INT          NOT NULL,
+  consulta_id		int			 NOT NULL,
   descricao         VARCHAR(255) NULL    ,
   data_inclusao     DATETIME     NULL    ,
   PRIMARY KEY (id)
@@ -271,7 +271,7 @@ ALTER TABLE documento
     FOREIGN KEY (tipo_documento_id)
     REFERENCES tipo_documento (id);
 
-ALTER TABLE consulta
-  ADD CONSTRAINT FK_documento_TO_consulta
-    FOREIGN KEY (documento_id)
-    REFERENCES documento (id);
+ALTER TABLE documento
+  ADD CONSTRAINT FK_consulta_TO_documento
+    FOREIGN KEY (consulta_id)
+    REFERENCES consulta (id);
