@@ -4,7 +4,7 @@ USE healthme;
 
 CREATE TABLE agendamento
 (
-  id               INT      NOT NULL,
+  id               INT      NOT NULL		AUTO_INCREMENT,
   medico_id        INT      NOT NULL,
   paciente_id      INT      NOT NULL,
   especialidade_id INT      NOT NULL,
@@ -38,7 +38,7 @@ CREATE TABLE alocação_Exame
 
 CREATE TABLE consulta
 (
-  id               INT          NOT NULL,
+  id               INT          NOT NULL		AUTO_INCREMENT,
   agendamento_id   INT          NOT NULL,
   tipo_consulta_id INT          NOT NULL,
   link_consulta    VARCHAR(255) NULL    ,
@@ -47,7 +47,7 @@ CREATE TABLE consulta
 
 CREATE TABLE documento
 (
-  id                INT          NOT NULL,
+  id                INT          NOT NULL		AUTO_INCREMENT,
   tipo_documento_id INT          NOT NULL,
   consulta_id		int			 NOT NULL,
   descricao         VARCHAR(255) NULL    ,
@@ -57,22 +57,23 @@ CREATE TABLE documento
 
 CREATE TABLE especialidade
 (
-  id        INT          NOT NULL,
+  id        INT          NOT NULL		AUTO_INCREMENT,
   descricao VARCHAR(255) NOT NULL,
   PRIMARY KEY (id)
 );
 
 CREATE TABLE exame
 (
-  id             INT          NOT NULL,
-  medicamento_id INT          NOT NULL,
+  id             INT          NOT NULL		AUTO_INCREMENT,
+  tipo_Exame_id INT          NOT NULL,
   descriao       VARCHAR(255) NULL    ,
   PRIMARY KEY (id)
 );
 
 CREATE TABLE item
 (
-  id                  INT          NOT NULL,
+  id                  INT          NOT NULL			AUTO_INCREMENT,
+  receita_id          INT          NOT NULL,
   tipo_medicamento_id INT          NOT NULL,
   descricao           VARCHAR(255) NULL    ,
   PRIMARY KEY (id)
@@ -80,7 +81,7 @@ CREATE TABLE item
 
 CREATE TABLE medico
 (
-  id          INT          NOT NULL,
+  id          INT          NOT NULL		AUTO_INCREMENT,
   usuario_id  INT          NOT NULL,
   data_fim    DATETIME     NULL    ,
   data_inicio DATETIME     NOT NULL,
@@ -92,7 +93,7 @@ CREATE TABLE medico
 
 CREATE TABLE paciente
 (
-  id          INT      NOT NULL,
+  id          INT      NOT NULL		AUTO_INCREMENT,
   usuario_id  INT      NOT NULL,
   data_fim    DATETIME NULL    ,
   data_inicio DATETIME NOT NULL,
@@ -102,22 +103,21 @@ CREATE TABLE paciente
 
 CREATE TABLE receita
 (
-  id          INT NOT NULL,
-  item_id     INT NOT NULL,
+  id          INT NOT NULL		AUTO_INCREMENT,
   consulta_id INT NOT NULL,
   PRIMARY KEY (id)
 );
 
 CREATE TABLE status
 (
-  id        INT          NOT NULL,
+  id        INT          NOT NULL		AUTO_INCREMENT,
   descricao VARCHAR(255) NOT NULL,
   PRIMARY KEY (id)
 );
 
 CREATE TABLE superAdmin
 (
-  id          INT      NOT NULL,
+  id          INT      NOT NULL		AUTO_INCREMENT,
   usuario_id  INT      NOT NULL,
   data_inicio DATETIME NOT NULL,
   data_fim    DATETIME NULL    ,
@@ -127,35 +127,35 @@ CREATE TABLE superAdmin
 
 CREATE TABLE tipo_consulta
 (
-  id        INT          NOT NULL,
+  id        INT          NOT NULL		AUTO_INCREMENT,
   descricao VARCHAR(255) NOT NULL,
   PRIMARY KEY (id)
 );
 
 CREATE TABLE tipo_documento
 (
-  id        INT          NOT NULL,
+  id        INT          NOT NULL		AUTO_INCREMENT,
   descricao VARCHAR(255) NULL    ,
   PRIMARY KEY (id)
 );
 
 CREATE TABLE tipo_Exame
 (
-  id        INT          NOT NULL,
+  id        INT          NOT NULL		AUTO_INCREMENT,
   descricao VARCHAR(255) NULL    ,
   PRIMARY KEY (id)
 );
 
 CREATE TABLE tipo_medicamento
 (
-  id        INT          NOT NULL,
+  id        INT          NOT NULL		AUTO_INCREMENT,
   descricao VARCHAR(255) NULL    ,
   PRIMARY KEY (id)
 );
 
 CREATE TABLE usuario
 (
-  id              INT          NOT NULL,
+  id              INT          NOT NULL		AUTO_INCREMENT,
   nome            VARCHAR(255) NOT NULL,
   cpf             VARCHAR(255) NOT NULL,
   numero          VARCHAR(255) NOT NULL,
@@ -163,6 +163,7 @@ CREATE TABLE usuario
   data_inicio     DATETIME     NOT NULL,
   data_fim        DATETIME     NULL    ,
   ativo           BOOL         NOT NULL,
+  senha           VARCHAR(1000) NOT NULL, 
   PRIMARY KEY (id)
 );
 
@@ -228,7 +229,7 @@ ALTER TABLE agendamento
 
 ALTER TABLE exame
   ADD CONSTRAINT FK_tipo_Exame_TO_exame
-    FOREIGN KEY (medicamento_id)
+    FOREIGN KEY (tipo_Exame_id)
     REFERENCES tipo_Exame (id);
 
 ALTER TABLE alocação_Exame
@@ -246,15 +247,15 @@ ALTER TABLE item
     FOREIGN KEY (tipo_medicamento_id)
     REFERENCES tipo_medicamento (id);
 
+ALTER TABLE item
+  ADD CONSTRAINT FK_receita_TO_item
+    FOREIGN KEY (receita_id)
+    REFERENCES receita (id);
+
 ALTER TABLE consulta
   ADD CONSTRAINT FK_agendamento_TO_consulta
     FOREIGN KEY (agendamento_id)
     REFERENCES agendamento (id);
-
-ALTER TABLE receita
-  ADD CONSTRAINT FK_item_TO_receita
-    FOREIGN KEY (item_id)
-    REFERENCES item (id);
 
 ALTER TABLE receita
   ADD CONSTRAINT FK_consulta_TO_receita

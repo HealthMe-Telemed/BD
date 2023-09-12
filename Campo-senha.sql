@@ -1,1 +1,0 @@
-ALTER TABLE usuario ADD senha VARCHAR(1000);
