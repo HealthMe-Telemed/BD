@@ -32,7 +32,7 @@ BEGIN
             IF NOT EXISTS (
                 SELECT 1
                 FROM agendamento
-                WHERE data_agendada = DataHoraAtual AND medico_id = MedicoId AND paciente_id = PacienteId
+                WHERE data_agendada = DataHoraAtual AND (medico_id = MedicoId OR paciente_id = PacienteId)
             ) THEN
                 -- Insira o horário disponível na tabela temporária
                 INSERT INTO HorariosDisponiveis (DataHoraAgendamento)
