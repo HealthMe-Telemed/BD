@@ -1,5 +1,5 @@
 DELIMITER //
-CREATE PROCEDURE pInserirUsuarioPerfisNovo(IN usuarioId)
+CREATE PROCEDURE pInserirUsuarioPerfisNovo(IN usuarioId INT)
 BEGIN
 	DECLARE pacienteId INT;
 	DECLARE medicoId INT;    
