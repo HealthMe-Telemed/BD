@@ -49,7 +49,10 @@ INSERT INTO usuario (nome, cpf, numero, data_nascimento, data_inicio, ativo, sen
 INSERT INTO paciente (usuario_id, data_inicio, ativo) VALUES
 (1, NOW(), 1),
 (2, NOW(), 1),
-(3, NOW(), 1);
+(3, NOW(), 1),
+(4, NOW(), 1),
+(5, NOW(), 1),
+(6, NOW(), 1);
 
 -- Inserir dados na tabela medico
 INSERT INTO medico (usuario_id, data_inicio, crm, ativo) VALUES
@@ -113,3 +116,5 @@ INSERT INTO superAdmin (usuario_id, data_inicio, ativo) VALUES
 (7, NOW(), 1),
 (8, NOW(), 1),
 (9, NOW(), 1);
+
+INSERT INTO perfil(descricao) VALUES ('Paciente'), ('Medico'), ('Administrador');

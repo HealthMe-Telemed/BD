@@ -158,6 +158,7 @@ CREATE TABLE usuario
   id              INT          NOT NULL		AUTO_INCREMENT,
   nome            VARCHAR(255) NOT NULL,
   cpf             VARCHAR(255) NOT NULL,
+  email           VARCHAR(100) UNIQUE,
   numero          VARCHAR(255) NOT NULL,
   data_nascimento DATE         NOT NULL,
   data_inicio     DATETIME     NOT NULL,
@@ -165,6 +166,17 @@ CREATE TABLE usuario
   ativo           BOOL         NOT NULL,
   senha           VARCHAR(1000) NOT NULL, 
   PRIMARY KEY (id)
+);
+
+CREATE TABLE perfil(
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    descricao VARCHAR(50) NOT NULL
+);
+
+CREATE TABLE alocacao_usuario_perfil(
+    id_perfil INT NOT NULL,
+    id_usuario INT NOT NULL,
+    PRIMARY KEY(id_perfil, id_usuario)
 );
 
 ALTER TABLE superAdmin
@@ -276,3 +288,13 @@ ALTER TABLE documento
   ADD CONSTRAINT FK_consulta_TO_documento
     FOREIGN KEY (consulta_id)
     REFERENCES consulta (id);
+
+ALTER TABLE alocacao_usuario_perfil
+    ADD CONSTRAINT FK_perfil_TO_alocacao_usuario_perfil
+        FOREIGN KEY (id_perfil)
+        REFERENCES perfil(id);
+
+ALTER TABLE alocacao_usuario_perfil
+    ADD CONSTRAINT FK_usuario_TO_alocacao_usuario_perfil
+        FOREIGN KEY (id_usuario)
+        REFERENCES usuario(id);
