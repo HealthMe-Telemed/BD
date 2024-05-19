@@ -179,6 +179,14 @@ CREATE TABLE alocacao_usuario_perfil(
     PRIMARY KEY(id_perfil, id_usuario)
 );
 
+CREATE TABLE tokenReset(
+		id INT NOT NULL AUTO_INCREMENT,
+    id_usuario INT NOT NULL,
+    token VARCHAR(8) NOT NULL,
+    data_expiracao DATETIME NOT NULL
+);
+
+
 ALTER TABLE superAdmin
   ADD CONSTRAINT FK_usuario_TO_superAdmin
     FOREIGN KEY (usuario_id)
@@ -298,3 +306,8 @@ ALTER TABLE alocacao_usuario_perfil
     ADD CONSTRAINT FK_usuario_TO_alocacao_usuario_perfil
         FOREIGN KEY (id_usuario)
         REFERENCES usuario(id);
+
+ALTER TABLE tokenReset
+  ADD CONSTRAINT FK_usuario_TO_tokenReset
+    FOREIGN KEY (id_usuario)
+    REFERENCES usuario (id);
