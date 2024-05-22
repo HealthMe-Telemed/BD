@@ -183,7 +183,8 @@ CREATE TABLE tokenReset(
 		id INT NOT NULL AUTO_INCREMENT,
     id_usuario INT NOT NULL,
     token VARCHAR(8) NOT NULL,
-    data_expiracao DATETIME NOT NULL
+    data_expiracao DATETIME NOT NULL,
+    PRIMARY KEY (id)
 );
 
 
