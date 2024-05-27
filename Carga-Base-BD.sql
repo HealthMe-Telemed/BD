@@ -33,17 +33,17 @@ INSERT INTO status (descricao) VALUES
 ('Cancelado');
 
 -- Inserir dados na tabela usuario
-INSERT INTO usuario (nome, cpf, numero, data_nascimento, data_inicio, ativo, senha) VALUES
-('João Silva', '12345678900', '987654321', '1990-05-10', NOW(), 1, MD5('senhaUsuario1')),
-('Maria Santos', '98765432100', '123456789', '1985-09-20', NOW(), 1, MD5('senhaUsuario2')),
-('Pedro Souza', '45678912300', '555555555', '1995-12-03', NOW(), 1, MD5('senhaUsuario3')),
-('Ana Oliveira', '78945612300', '111111111', '1992-08-15', NOW(), 1, MD5('senhaUsuario4')),
-('Lucas Pereira', '65498732100', '222222222', '1988-03-25', NOW(), 1, MD5('senhaUsuario5')),
-('Juliana Santos', '96385274100', '333333333', '1991-11-02', NOW(), 1, MD5('senhaUsuario6')),
-('Rafael Souza', '25896314700', '444444444', '1987-07-09', NOW(), 1, MD5('senhaUsuario7')),
-('Carolina Lima', '74185296300', '555555555', '1994-01-18', NOW(), 1, MD5('senhaUsuario8')),
-('Pedro Silva', '36985214700', '666666666', '1990-06-30', NOW(), 1, MD5('senhaUsuario9')),
-('Mariana Santos', '14725836900', '777777777', '1995-09-12', NOW(), 1, MD5('senhaUsuario10'));
+INSERT INTO usuario (nome, cpf, numero, data_nascimento, data_inicio, ativo, senha, email) VALUES
+('João Silva', '12345678900', '987654321', '1990-05-10', NOW(), 1, MD5('senhaUsuario1'), 'usuario1@gmail.com'),
+('Maria Santos', '98765432100', '123456789', '1985-09-20', NOW(), 1, MD5('senhaUsuario2'), 'usuario2@outlook.com'),
+('Pedro Souza', '45678912300', '555555555', '1995-12-03', NOW(), 1, MD5('senhaUsuario3'), 'usuario3@outlook.com'),
+('Ana Oliveira', '78945612300', '111111111', '1992-08-15', NOW(), 1, MD5('senhaUsuario4'), 'usuario4@gmail.com'),
+('Lucas Pereira', '65498732100', '222222222', '1988-03-25', NOW(), 1, MD5('senhaUsuario5'), 'usuario5@gmail.com'),
+('Juliana Santos', '96385274100', '333333333', '1991-11-02', NOW(), 1, MD5('senhaUsuario6'), 'usuario6@gmail.com'),
+('Rafael Souza', '25896314700', '444444444', '1987-07-09', NOW(), 1, MD5('senhaUsuario7'), 'usuario7@outlook.com'),
+('Carolina Lima', '74185296300', '555555555', '1994-01-18', NOW(), 1, MD5('senhaUsuario8'), 'usuario8@gmail.com'),
+('Pedro Silva', '36985214700', '666666666', '1990-06-30', NOW(), 1, MD5('senhaUsuario9'), 'usuario9@outlook.com'),
+('Mariana Santos', '14725836900', '777777777', '1995-09-12', NOW(), 1, MD5('senhaUsuario10'), 'usuario10@gmail.com');
 
 -- Inserir dados na tabela paciente
 INSERT INTO paciente (usuario_id, data_inicio, ativo) VALUES
